@@ -61,17 +61,17 @@
 }
 #itemOne {
     background-color: #ADFF2F;
-    background-image: url("http://www.kirupa.com/images/blueSquare.png");
+    background-image: url("http://lorempixel.com/550/350/animals");
 }
 #itemTwo {
     background-color: #FF7F50;
-    background-image: url("http://www.kirupa.com/images/yellowSquare.png");
+    background-image: url("http://lorempixel.com/550/350/cats");
 }
 #itemThree {
     background-color: #1E90FF;
-    background-image: url("http://www.kirupa.com/images/pinkSquare.png");
+    background-image: url("http://lorempixel.com/550/350/city");
 }
 #itemFour {
     background-color: #DC143C;
-    background-image: url("http://www.kirupa.com/images/graySquare.png");
+    background-image: url("http://lorempixel.com/550/350/food");
 }
