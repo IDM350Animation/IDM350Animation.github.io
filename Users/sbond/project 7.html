@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    
+    <style>
+        body {
+            background-color: #F0FFFF;
+            padding: 25px;
+        }
+
+        #main {
+            width: 450px;
+        }
+
+            #main .icon {
+                padding: 20px;
+                border-radius: 40px;
+            }
+
+                #main .icon:nth-child(2n) {
+                    animation-name: keyframes1;
+                    animation-iteration-count: infinite;
+                    transform-origin: 50% 10%;
+                }
+
+                #main .icon:nth-child(2n-1) {
+                    animation-name: keyframes2;
+                    animation-iteration-count: infinite;
+                    animation-direction: alternate;
+                    transform-origin: 30% 5%;
+                }
+
+        @keyframes keyframes1 {
+            0% {
+                transform: rotate(-1deg);
+                animation-timing-function: ease-in;
+            }
+
+            50% {
+                transform: rotate(1.5deg);
+                animation-timing-function: ease-out;
+            }
+        }
+
+        @keyframes keyframes2 {
+            0% {
+                transform: rotate(1deg);
+                animation-timing-function: ease-in;
+            }
+
+            50% {
+                transform: rotate(-1.5deg);
+                animation-timing-function: ease-out;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <img class="icon"
+                style="animation-delay: -1s; animation-duration: 1s"
+                height="100" src="http://www.emoji-cheat-sheet.com/graphics/emojis/dolphin.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.5s; animation-duration: .5s" 
+                height="100" src="http://icdn.pro/images/en/a/n/animals-fish-shark-icone-5756-128.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.05s; animation-duration: .9s" 
+                height="100" src="http://www.rw-designer.com/icon-view/10553.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.2s; animation-duration: .33s" 
+                height="100" src="http://fc06.deviantart.net/fs70/f/2013/233/0/5/spore_creature___african_penguin_png_by_tote_meistarinn-d6j38ya.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.31s; animation-duration: .24s" 
+                height="100" src="http://www.kirupa.com/html5/examples/images/icon8.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.15s; animation-duration: .45s" 
+                height="100" src="http://1.bp.blogspot.com/-sl9pixDpyLY/TvF_yzLPWII/AAAAAAAAAhc/HUA1qH8PsH8/s1600/pink+butterfly.png" 
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.2s; animation-duration: .22s" 
+                height="100" src="http://img1.wikia.nocookie.net/__cb20130422045108/cityville/images/e/e5/Quest_viral_icon_sea_otter.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.3s; animation-duration: .28s" 
+                height="100" src="http://preview.turbosquid.com/Preview/2014/07/10__22_59_29/WhaleShark_1.jpg5304f63c-6d47-48a3-b74b-27b248b5d2ecSmall.jpg"
+                width="100">
+        <img class="icon" 
+                style="animation-delay: -.22s; animation-duration: .3s" 
+                height="100" src="http://www.abeka.com/BookImages/ClipArt/211885/46x46y50fx50fh/211885-Yellow-Duckling-looking-behind-color-png.png"
+                width="100">
+    </div>
+    <script src="http://www.kirupa.com/prefixfree.min.js"></script>
+</body>
+
+</html>
