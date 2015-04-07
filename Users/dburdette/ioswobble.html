@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>iPhone / iPad Icon Wobble Effect</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <style>
+        body {
+            background-color: #EFEFEF;
+            padding: 25px;
+        }
+
+        #main {
+            width: 450px;
+        }
+
+            #main .icon {
+                padding: 20px;
+                border-radius: 40px;
+            }
+
+                #main .icon:nth-child(2n) {
+                    animation-name: keyframes1;
+                    animation-iteration-count: infinite;
+                    transform-origin: 50% 10%;
+                }
+
+                #main .icon:nth-child(2n-1) {
+                    animation-name: keyframes2;
+                    animation-iteration-count: infinite;
+                    animation-direction: alternate;
+                    transform-origin: 30% 5%;
+                }
+
+        @keyframes keyframes1 {
+            0% {
+                transform: rotate(-1deg);
+                animation-timing-function: ease-in;
+            }
+
+            50% {
+                transform: rotate(1.5deg);
+                animation-timing-function: ease-out;
+            }
+        }
+
+        @keyframes keyframes2 {
+            0% {
+                transform: rotate(1deg);
+                animation-timing-function: ease-in;
+            }
+
+            50% {
+                transform: rotate(-1.5deg);
+                animation-timing-function: ease-out;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <img class="icon"
+                style="animation-delay: .75s; animation-duration: .55s"
+                height="100" src="https://s3.amazonaws.com/libapps/accounts/1749/images/facebook_icon_by_x_1337_x-d5ikwkm.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.5s; animation-duration: .35s" 
+                height="100" src="http://img2.wikia.nocookie.net/__cb20100301025455/gtawiki/images/2/2b/Chrome_icon.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.05s; animation-duration: .50s" 
+                height="100" src="http://www.clipartbest.com/cliparts/6nT/Xde/6nTXdeLiB.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: .2s; animation-duration: .33s" 
+                height="100" src="http://www.postelds.sk/images/click-icon.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.31s; animation-duration: .24s" 
+                height="100" src="http://zelda-sanctuary.net/w/images/e/e3/Icon-Other-Skype.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: .68s; animation-duration: .25s" 
+                height="100" src="http://media.tumblr.com/tumblr_mejhq2qZ411qgce3z.png" 
+                width="100">
+        <img class="icon"
+                style="animation-delay: .2s; animation-duration: .75s" 
+                height="100" src="http://www.kirupa.com/html5/examples/images/icon6.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: .8s; animation-duration: .2s" 
+                height="100" src="http://www.kirupa.com/html5/examples/images/icon8.png"
+                width="100">
+        <img class="icon" 
+                style="animation-delay: -.22s; animation-duration: .8s" 
+                height="100" src="http://www.kirupa.com/html5/examples/images/icon9.png"
+                width="100">
+    </div>
+    <script src="http://www.kirupa.com/prefixfree.min.js"></script>
+</body>
+
+</html>
