@@ -1,131 +1,151 @@
+
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>iPhone / iPad Icon Wobble Effect</title>
-        <style>
-            body {
-                background-color: #EFEFEF;
-                padding: 25px;
+<head>
+    <title>iPhone / iPad Icon Wobble Effect</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <style>
+        body {
+            background-color: #EFEFEF;
+            padding: 25px;
+        }
+
+        #main {
+            width: 450px;
+        }
+
+        #main .icon {
+            padding: 20px;
+            border-radius: 40px;
+        }
+
+        #main .icon:nth-child(2n) {
+            -webkit-animation-name: keyframes1;
+            animation-name: keyframes1;
+            -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+            -webkit-transform-origin: 50% 10%;
+            -ms-transform-origin: 50% 10%;
+            transform-origin: 50% 10%;
+        }
+
+        #main .icon:nth-child(2n-1) {
+            -webkit-animation-name: keyframes2;
+            animation-name: keyframes2;
+            -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+            -webkit-animation-direction: alternate;
+            animation-direction: alternate;
+            -webkit-transform-origin: 30% 5%;
+            -ms-transform-origin: 30% 5%;
+            transform-origin: 30% 5%;
+        }
+
+        @-webkit-keyframes keyframes1 {
+            0% {
+                -webkit-transform: rotate(-10deg);
+                transform: rotate(-10deg);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
             }
-
-            #main {
-                width: 450px;
+            50% {
+                -webkit-transform: rotate(15.5deg);
+                transform: rotate(15.5deg);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
             }
+        }
 
-            #main .icon {
-                padding: 20px;
-                border-radius: 40px;
+        @keyframes keyframes1 {
+            0% {
+                -webkit-transform: rotate(-20deg);
+                transform: rotate(-120deg);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
             }
-
-            #main .icon:nth-child(2n) {
-                -webkit-animation-name: keyframes1;
-                animation-name: keyframes1;
-                -webkit-animation-iteration-count: infinite;
-                animation-iteration-count: infinite;
-                -webkit-transform-origin: 50% 10%;
-                -ms-transform-origin: 50% 10%;
-                transform-origin: 50% 10%;
+            50% {
+                -webkit-transform: rotate(17.5deg);
+                transform: rotate(17.5deg);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
             }
+        }
 
-            #main .icon:nth-child(2n-1) {
-                -webkit-animation-name: keyframes2;
-                animation-name: keyframes2;
-                -webkit-animation-iteration-count: infinite;
-                animation-iteration-count: infinite;
-                -webkit-animation-direction: alternate;
-                animation-direction: alternate;
-                -webkit-transform-origin: 30% 5%;
-                -ms-transform-origin: 30% 5%;
-                transform-origin: 30% 5%;
+        @-webkit-keyframes keyframes2 {
+            0% {
+                -webkit-transform: rotate(19deg);
+                transform: rotate(19deg);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
             }
-
-            @-webkit-keyframes keyframes1 {
-                0% {
-                    -webkit-transform: rotate(-10deg);
-                    transform: rotate(-10deg);
-                    -webkit-animation-timing-function: ease-in;
-                    animation-timing-function: ease-in;
-                }
-                50% {
-                    -webkit-transform: rotate(15.5deg);
-                    transform: rotate(15.5deg);
-                    -webkit-animation-timing-function: ease-out;
-                    animation-timing-function: ease-out;
-                }
+            50% {
+                -webkit-transform: rotate(-3.5deg);
+                transform: rotate(-3.5deg);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
             }
+        }
 
-            @keyframes keyframes1 {
-                0% {
-                    -webkit-transform: rotate(-20deg);
-                    transform: rotate(-120deg);
-                    -webkit-animation-timing-function: ease-in;
-                    animation-timing-function: ease-in;
-                }
-                50% {
-                    -webkit-transform: rotate(17.5deg);
-                    transform: rotate(17.5deg);
-                    -webkit-animation-timing-function: ease-out;
-                    animation-timing-function: ease-out;
-                }
+        @keyframes keyframes2 {
+            0% {
+                -webkit-transform: rotate(23deg);
+                transform: rotate(23deg);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
             }
-
-            @-webkit-keyframes keyframes2 {
-                0% {
-                    -webkit-transform: rotate(19deg);
-                    transform: rotate(19deg);
-                    -webkit-animation-timing-function: ease-in;
-                    animation-timing-function: ease-in;
-                }
-                50% {
-                    -webkit-transform: rotate(-3.5deg);
-                    transform: rotate(-3.5deg);
-                    -webkit-animation-timing-function: ease-out;
-                    animation-timing-function: ease-out;
-                }
+            50% {
+                -webkit-transform: rotate(-33.5deg);
+                transform: rotate(-33.5deg);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
             }
+        }
 
-            @keyframes keyframes2 {
-                0% {
-                    -webkit-transform: rotate(23deg);
-                    transform: rotate(23deg);
-                    -webkit-animation-timing-function: ease-in;
-                    animation-timing-function: ease-in;
-                }
-                50% {
-                    -webkit-transform: rotate(-33.5deg);
-                    transform: rotate(-33.5deg);
-                    -webkit-animation-timing-function: ease-out;
-                    animation-timing-function: ease-out;
-                }
-            }
+    </style>
+</head>
 
-        </style>
-    </head>
-
-    <body>
-        <div id="main">
-            <img class="icon" style="animation-delay: -0.75s; animation-duration: .25s" height="100" src="http://lorempixel.com/100/100/animals" width="100">
-
-            <img class="icon"style="animation-delay: -0.5s; animation-duration: .3s" height="100" src="http://lorempixel.com/100/100/cats" width="100">
-
-            <img class="icon" style="animation-delay: -0.05s; animation-duration: .27s" height="100" src="http://lorempixel.com/100/100/food" width="100">
-
-            <img class="icon" style="animation-delay: -0.2s; animation-duration: .33s" height="100" src="http://lorempixel.com/100/100/city" width="100">
-
-            <img class="icon" style="animation-delay: -0.31s; animation-duration: .24s" height="100" src="http://www.kirupa.com/html5/examples/images/icon7.png" width="100">
-
-            <img class="icon" style="animation-delay: -0.15s; animation-duration: .25s" height="100" src="http://www.kirupa.com/html5/examples/images/icon5.png" width="100">
-
-            <img class="icon" style="animation-delay: -0.2s; animation-duration: .22s" height="100" src="http://www.kirupa.com/html5/examples/images/icon6.png" width="100">
-
-            <img class="icon" style="animation-delay: -0.3s; animation-duration: .28s" height="100" src="http://www.kirupa.com/html5/examples/images/icon8.png" width="100">
-
-            <img class="icon" style="animation-delay: -0.22s; animation-duration: .3s" height="100" src="http://www.kirupa.com/html5/examples/images/icon9.png" width="100">
-        </div>
-        <script src="js/prefixfree.min.js"></script>
-    </body>
+<body>
+    <div id="main">
+        <img class="icon"
+                style="animation-delay: -.75s; animation-duration: .25s"
+                height="100" src="http://lorempixel.com/100/100/abstract"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.5s; animation-duration: .3s"
+                height="100" src="http://lorempixel.com/100/100/animals"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.05s; animation-duration: .27s"
+                height="100" src="http://lorempixel.com/100/100/cats"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.2s; animation-duration: .33s"
+                height="100" src="http://lorempixel.com/100/100/food"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.31s; animation-duration: .24s"
+                height="100" src="http://www.kirupa.com/html5/examples/images/icon7.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.15s; animation-duration: .25s"
+                height="100" src="http://www.kirupa.com/html5/examples/images/icon5.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.2s; animation-duration: .22s"
+                height="100" src="http://www.kirupa.com/html5/examples/images/icon6.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.3s; animation-duration: .28s"
+                height="100" src="http://www.kirupa.com/html5/examples/images/icon8.png"
+                width="100">
+        <img class="icon"
+                style="animation-delay: -.22s; animation-duration: .3s"
+                height="100" src="http://www.kirupa.com/html5/examples/images/icon9.png"
+                width="100">
+    </div>
+    <script src="http://www.kirupa.com/prefixfree.min.js"></script>
+</body>
 
 </html>
-
-<!--3 icons 4 animations-->
