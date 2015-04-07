@@ -1,0 +1,77 @@
+#wrapper {
+    width: 2200px;
+    position: relative;
+    left: 0px;
+    -webkit-transition: left .5s ease-in-out;
+    transition: left .5s ease-in-out;
+}
+
+#contentContainer {
+    width: 550px;
+    height: 350px;
+    border: 5px black solid;
+    overflow: hidden;
+}
+
+#navLinks {
+    text-align: center;
+    width: 550px;
+}
+
+#navLinks ul {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    margin-top: 6px;
+}
+
+#navLinks ul li {
+    float: left;
+    text-align: center;
+    margin: 10px;
+    list-style: none;
+    cursor: pointer;
+    background-color: #CCC;
+    padding: 5px;
+    border-radius: 50%;
+    border: black 5px solid;
+}
+
+#navLinks ul li:hover {
+    background-color: #FF0;
+}
+
+#navLinks ul li.active {
+    background-color: #333;
+    color: #FFF;
+    outline-width: 7px;
+}
+
+#navLinks ul li.active:hover {
+    background-color: #484848;
+    color: #FFF;
+}
+
+.content {
+    float: left;
+    width: 550px;
+    height: 350px;
+    white-space: normal;
+    background-repeat: no-repeat;
+}
+#itemOne {
+    background-color: #ADFF2F;
+    background-image: url("http://www.kirupa.com/images/blueSquare.png");
+}
+#itemTwo {
+    background-color: #FF7F50;
+    background-image: url("http://www.kirupa.com/images/yellowSquare.png");
+}
+#itemThree {
+    background-color: #1E90FF;
+    background-image: url("http://www.kirupa.com/images/pinkSquare.png");
+}
+#itemFour {
+    background-color: #DC143C;
+    background-image: url("http://www.kirupa.com/images/graySquare.png");
+}
