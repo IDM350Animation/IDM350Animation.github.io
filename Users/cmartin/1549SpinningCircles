@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+        #myCanvas {
+            border-width: 1px;
+            border-style: dotted;
+            border-color: Gray;
+        }
+
+        h1 {
+            font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+            font-size: x-large;
+            color: #999999;
+        }
+
+        body {
+            background-color: #FFF;
+            padding: 40px;
+        }
+
+        p {
+            font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+            font-size: 11px;
+        }
+
+        a {
+            color: #3E99CA;
+            text-decoration: none;
+        }
+
+        a:hover {
+            background-color: #E2F0F8;
+            border-radius: 2px;
+        }
+    </style>
+    <title>CMM 1549</title>
+</head>
+
+<body>
+
+    <h1>CMM's Circles</h1>
+    <div id="container">
+        <canvas id="myCanvas" height="400" width="400"></canvas>
+    </div>
+    <script>
+
+        var mainCanvas = document.getElementById("myCanvas");
+        var mainContext = mainCanvas.getContext('2d');
+
+        var canvasWidth = mainCanvas.width;
+        var canvasHeight = mainCanvas.height;
+        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+        var circles = new Array();
+        function Circle(angle, sign, radius, rotationRadius, initialX, initialY) {
+            this.angle = angle;
+            this.sign = sign;
+            this.radius = radius;
+            this.rotationRadius = rotationRadius;
+            this.initialX = initialX;
+            this.initialY = initialY;
+            this.incrementer = .01 + Math.random() * .01;
+        }
+
+        Circle.prototype.update = function () {
+
+            this.angle += this.incrementer;
+
+            this.currentX = this.initialX + this.rotationRadius * Math.cos(this.angle);
+            this.currentY = this.initialY + this.rotationRadius * Math.sin(this.angle);
+
+            if (this.angle >= (Math.PI * 2)) {
+                this.angle = 0;
+                this.incrementer = .01 + Math.random() * .1;
+            }
+
+            // The following code is responsible for actually drawing the circle on the screen
+            mainContext.beginPath();
+            mainContext.arc(this.currentX, this.currentY, this.radius, 0, Math.PI * 2, false);
+            mainContext.closePath();
+            mainContext.fillStyle = 'rgba(200, 15, 85, .1)';
+            mainContext.fill();
+        };
+
+        //
+        //
+        function createCircles() {
+        	// change the range of this loop to adjust the number of circles that you see
+            for (var i = 0; i < 100; i++) {
+                var radius = 5 + Math.random() * 40;
+                var initialX = canvasWidth / 2;
+                var initialY = canvasHeight / 2;
+                var rotationRadius = 1 + Math.random() * 180;
+                var angle = Math.random() * 2 * Math.PI;
+
+                var signHelper = Math.floor(Math.random() * 2);
+                var sign;
+
+                // Randomly specify whether the circle will be rotating clockwise or counterclockwise
+                if (signHelper == 1) {
+                    sign = -1;
+                } else {
+                    sign = 1;
+                }
+
+                // create the Circle object
+                var circle = new Circle(angle, sign, radius, rotationRadius, initialX, initialY);
+                circles.push(circle);
+            }
+            // call the draw function approximately 60 times a second
+            requestAnimationFrame(draw);
+        }
+        createCircles();
+
+        function draw() {
+            mainContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            mainContext.fillStyle = '#E6E6F6';
+            mainContext.fillRect(0, 0, canvasWidth, canvasHeight);
+
+            for (var i = 0; i < circles.length; i++) {
+                var circle = circles[i];
+                circle.update();
+            }
+            
+            // call the draw function again!
+            requestAnimationFrame(draw);
+        }
+    </script>
+	<p>This was created as part of the <a href="http://www.kirupa.com/">
+	requestAnimationFrame tutorial</a>.</p>
+</body>
+
+</html>
