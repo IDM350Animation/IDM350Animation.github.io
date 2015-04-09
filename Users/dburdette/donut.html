@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+<meta content="en-us" http-equiv="Content-Language">
+<meta charset="utf-8">
+<meta content="stuff, to, help, search, engines, not" name="keywords">
+<meta content="What this page is about." name="description">
+<meta content="An Interesting Title Goes Here" name="title">
+<title>Move to Click Position</title>
+<style>
+body {
+    background-color: #FFF;
+    margin: 30px;
+    margin-top: 10px;
+}
+#contentContainer {
+    width: 550px;
+    height: 350px;
+    border: 5px black solid;
+    overflow: hidden;
+    background-color: #FFFF00;
+}
+#donut {
+    position: relative;
+    left: 50px;
+    top: 25px;
+}
+</style>
+</head>
+ 
+<body>
+<div id="contentContainer">
+    <img id="donut" alt="the Dount" height="300" src="http://www.kirupa.com/images/donut.png" width="300">
+</div>
+ 
+<script src="http://www.kirupa.com/html5/examples/js/prefixfree.min.js"></script>
+<script>
+var theDonut = document.querySelector("#donut");
+var currentPos = 0;
+var angle = 0;
+var incrementer = .19;
+ 
+var requestAnimationFrame = window.requestAnimationFrame || 
+                            window.mozRequestAnimationFrame || 
+                            window.webkitRequestAnimationFrame || 
+                            window.msRequestAnimationFrame;
+ 
+function moveDonut() {
+    currentPos += 5;
+    angle += incrementer;
+     
+    theDonut.style.left = currentPos + 5 * Math.cos(angle) + "px";
+    theDonut.style.top = 25 + 50 * Math.sin(angle) + "px";
+     
+    if (Math.abs(currentPos) >= 800) {
+        currentPos = -400;
+        incrementer = .05 + Math.random() / 2;
+    }
+     
+    if (angle > 2 * Math.PI) {
+        angle = 0;
+    }
+     
+    requestAnimationFrame(moveDonut);
+}
+moveDonut();
+</script>
+</body>
+</html>
