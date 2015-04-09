@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+<meta content="en-us" http-equiv="Content-Language">
+<meta charset="utf-8">
+<meta content="CMM, blue doughnut, javascript animation" name="keywords">
+<meta content="A webpage illustrating the new coding techniques I have learned" name="description">
+<meta content="CMM's Animated Doughnut" name="title">
+<title>CMM JS Animation 4|9|15</title>
+<style>
+body {
+    background-color: #FFF;
+    margin: 30px;
+    margin-top: 10px;
+}
+#contentContainer {
+    width: 550px;
+    height: 350px;
+    border: 5px black solid;
+    overflow: hidden;
+    background-color: #FFFF00;
+}
+#BlueDoughnut {
+    position: relative;
+    left: 50px;
+    top: 25px;
+}
+</style>
+</head>
+ 
+<body>
+<div id="contentContainer">
+    <img id="BlueDoughnut" alt="the BlueDoughnut" height="300" src="http://www.kirupa.com/images/donut.png" width="300">
+</div>
+ 
+<script src="http://www.kirupa.com/html5/examples/js/prefixfree.min.js"></script>
+<script>
+var theBlueDoughnut = document.querySelector("#BlueDoughnut");
+var currentPos = 0;
+var angle = 0;
+var incrementer = .1;
+ 
+var requestAnimationFrame = window.requestAnimationFrame || 
+                            window.mozRequestAnimationFrame || 
+                            window.webkitRequestAnimationFrame || 
+                            window.msRequestAnimationFrame;
+ 
+function moveBlueDoughnut() {
+    currentPos += 5;
+    angle += incrementer;
+     
+    theBlueDoughnut.style.left = currentPos + 5 * Math.cos(angle) + "px";
+    theBlueDoughnut.style.top = 25 + 50 * Math.sin(angle) + "px";
+     
+    if (Math.abs(currentPos) >= 900) {
+        currentPos = -500;
+        incrementer = .05 + Math.random() / 2;
+    }
+     
+    if (angle > 2 * Math.PI) {
+        angle = 0;
+    }
+     
+    requestAnimationFrame(moveBlueDoughnut);
+}
+moveBlueDoughnut();
+ 
+</script>
+</body>
+</html>
