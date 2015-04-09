@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ 
+<head>
+<meta charset="utf-8">
+<title>Bouncing Clouds</title>
+<script src="http://www.kirupa.com/js/prefixfree.min.js"></script>
+ 
+<style>
+#mainContent {
+    background-color: #A2BFCE;
+    border-radius: 4px;
+    padding: 10px;
+    width: 600px;
+    height: 300px;
+    overflow: hidden;
+}
+.cloud {
+    position: absolute;
+}
+#bigcloud {
+    animation: bobble 4s infinite 0 alternate-reverse both ease-in-out;
+    margin-left: 100px;
+    margin-top: 15px;
+}
+    @keyframes bobble {
+    0% {
+        transform: translate3d(150px, 40px, 0px);
+        animation-timing-function: ease-in;
+    }
+    25% {
+        transform: rotate(-270deg);
+        animation-timing-function:ease-in-out;
+    }
+    50% {
+        transform: translate3d(50px, 70px, 0px);
+        animation-timing-function: ease-in-out;
+    }
+    75%{
+        transform: rotate(-270deg);
+        animation-timing-function:ease-in-out;
+    }    
+    100% {
+        transform: translate3d(150px, 40px, 0px);
+        animation-timing-function: ease-out
+    }
+}
+#smallcloud {
+    animation: bobble2 4s infinite 0 alternate-reverse both;
+    margin-top: 65px;
+    margin-left: 200px;
+}
+    @keyframes bobble2 {
+    0% {
+        transform: translate3d(75px, 40px, 0px);
+        animation-timing-function: ease-in;
+    }
+    25% {
+        transform: translate3d(100px, 70px, 0px);
+        animation-timing-function:ease-in-out;
+    }
+    50% {
+        transform: translate3d(20px, 50px, 0px);
+        animation-timing-function: ease-in-out;
+    }
+    100% {
+        transform: translate3d(75px, 40px, 0px);
+        animation-timing-function: ease-out
+    }
+}
+#batman {
+    animation:batdance 4s infinite 0 alternate both;
+    margin-bottom: 0px;
+    margin-left: 200px;
+}
+    @keyframes batdance {
+    0% {
+        transform: translate3d(-75px, 200px, 0px);
+        animation-timing-function: ease-in;
+    }
+    50% {
+        transform: translate3d(220px, 50px, 0px);
+        animation-timing-function: ease-in-out;
+    }
+    100% {
+        transform: translate3d(75px, 40px, 0px);
+        animation-timing-function: ease-out
+    }
+</style>
+</head>
+ 
+<body>
+    <div id="mainContent">
+          <img id="smallcloud" alt="#" class="cloud" height="103" src="http://www.kirupa.com/images/smallCloud.png" width="158">
+        <img id="bigcloud" alt="#" class="cloud" height="154" src="http://www.kirupa.com/images/bigCloud.png" width="238">
+            <img id="batman" alt="#" height="100" src="http://vignette3.wikia.nocookie.net/jadensadventures/images/2/2a/Batman-Animated-02-1.PNG/revision/latest?cb=20150221051826">
+
+    </div>
+</body>
+ 
+</html>
