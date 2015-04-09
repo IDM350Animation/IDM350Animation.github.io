@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+        #myCanvas {
+            border-width: 1px;
+            border-style: solid;
+            border-color: Gray;
+        }
+
+    
+        body {
+            background-color: #FFF;
+            padding: 40px;
+        }
+
+        a:hover {
+            background-color: #E2F0F8;
+            border-radius: 2px;
+        }
+    </style>
+    
+</head>
+
+<body>
+
+    
+    <div id="container">
+        <canvas id="myCanvas" height="400" width="400"></canvas>
+    </div>
+    <script>
+
+        var mainCanvas = document.getElementById("myCanvas");
+        var mainContext = mainCanvas.getContext('2d');
+
+        var canvasWidth = mainCanvas.width;
+        var canvasHeight = mainCanvas.height;
+        
+        
+        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+        var circles = new Array();
+
+    
+        function Circle(angle, sign, radius, rotationRadius, initialX, initialY) {
+            this.angle = angle;
+            this.sign = sign;
+            this.radius = radius;
+            this.rotationRadius = rotationRadius;
+            this.initialX = initialX;
+            this.initialY = initialY;
+            this.incrementer = .01 + Math.random() * .1;
+        }
+
+        Circle.prototype.update = function () {
+
+            this.angle += this.incrementer;
+
+            this.currentX = this.initialX + this.rotationRadius * Math.cos(this.angle);
+            this.currentY = this.initialY + this.rotationRadius * Math.sin(this.angle);
+
+            if (this.angle >= (Math.PI * 2)) {
+                this.angle = 0;
+                this.incrementer = .01 + Math.random() * .1;
+            }
+
+            
+            mainContext.beginPath();
+            mainContext.arc(this.currentX, this.currentY, this.radius, 0, Math.PI * 2, false);
+            mainContext.closePath();
+            mainContext.fillStyle = 'rgba(80, 10, 80, .1)';
+            mainContext.fill();
+        };
+
+    
+        function createCircles() {
+        	
+            for (var i = 0; i < 40; i++) {
+                var radius = 5 + Math.random() * 60;
+                var initialX = canvasWidth / 5;
+                var initialY = canvasHeight / 2;
+                var rotationRadius = 1 + Math.random() * 20;
+                var angle = Math.random() * 2 * Math.PI;
+
+                var signHelper = Math.floor(Math.random() * 1);
+                var sign;
+
+        
+                if (signHelper == 1) {
+                    sign = -1;
+                } else {
+                    sign = 1;
+                }
+
+                var circle = new Circle(angle, sign, radius, rotationRadius, initialX, initialY);
+                circles.push(circle);
+            }
+            requestAnimationFrame(draw);
+        }
+        createCircles();
+
+        function draw() {
+            mainContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            mainContext.fillStyle = '#F6F6F6';
+            mainContext.fillRect(0, 0, canvasWidth, canvasHeight);
+
+            for (var i = 0; i < circles.length; i++) {
+                var circle = circles[i];
+                circle.update();
+            }
+            
+            requestAnimationFrame(draw);
+        }
+    </script>
+
+</body>
+
+</html>
