@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+        #myCanvas {
+            border-width: 1px;
+            border-style: dotted;
+            border-color: whitesmoke;
+        }
+
+        h1 {
+            font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+            font-size: x-large;
+            color: blanchedalmond;
+        }
+
+        body {
+            background-color: green;
+            padding: 40px;
+        }
+
+        p {
+            font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+            font-size: 11px;
+        }
+
+        a {
+            color: ghostwhite;
+            text-decoration: none;
+        }
+
+        a:hover {
+            background-color: blue;
+            border-radius: 2px;
+        }
+    </style>
+    <title>Whoa... Gnarly dude!</title>
+</head>
+
+<body>
+
+    <h1>Gnarly Dude</h1>
+    <div id="container">
+        <canvas id="myCanvas" height="400" width="400"></canvas>
+    </div>
+    <script>
+
+        var mainCanvas = document.getElementById("myCanvas");
+        var mainContext = mainCanvas.getContext('2d');
+
+        var canvasWidth = mainCanvas.width;
+        var canvasHeight = mainCanvas.height;
+        
+        // depending on your browser, the right version of the rAF function will be returned...I hope
+        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+        // this array contains a reference to every circle that you will create
+        var circles = new Array();
+
+        //
+        // The Circle "constructor" is responsible for creating the circle objects and defining the various properties
+        // they have
+        //
+        function Circle(angle, sign, radius, rotationRadius, initialX, initialY) {
+            this.angle = angle;
+            this.sign = sign;
+            this.radius = radius;
+            this.rotationRadius = rotationRadius;
+            this.initialX = initialX;
+            this.initialY = initialY;
+            this.incrementer = .09 + Math.random() * .9;
+        }
+
+        Circle.prototype.update = function () {
+
+            this.angle += this.incrementer;
+
+            this.currentX = this.initialX + this.rotationRadius * Math.cos(this.angle);
+            this.currentY = this.initialY + this.rotationRadius * Math.sin(this.angle);
+
+            if (this.angle >= (Math.PI * 1)) {
+                this.angle = 1;
+                this.incrementer = .09 + Math.random() * .9;
+            }
+
+            // The following code is responsible for actually drawing the circle on the screen
+            mainContext.beginPath();
+            mainContext.arc(this.currentX, this.currentY, this.radius, 1, Math.PI * 4, false);
+            mainContext.closePath();
+            mainContext.fillStyle = 'rgba(1, 25, 150, .1)';
+            mainContext.fill();
+        };
+
+        //
+        // This function creates the circles that you end up seeing
+        //
+        function createCircles() {
+        	// change the range of this loop to adjust the number of circles that you see
+            for (var i = 10; i < 50; i++) {
+                var radius = 5 + Math.random() * 25;
+                var initialX = canvasWidth / 5;
+                var initialY = canvasHeight / 5;
+                var rotationRadius = 1 + Math.random() * 50;
+                var angle = Math.random() * 5 * Math.PI;
+
+                var signHelper = Math.floor(Math.random() * 5);
+                var sign;
+
+                // Randomly specify whether the circle will be rotating clockwise or counterclockwise
+                if (signHelper == 5) {
+                    sign = -5;
+                } else {
+                    sign = 5;
+                }
+
+                // create the Circle object
+                var circle = new Circle(angle, sign, radius, rotationRadius, initialX, initialY);
+                circles.push(circle);
+            }
+            // call the draw function approximately 60 times a second
+            requestAnimationFrame(draw);
+        }
+        createCircles();
+        
+        function draw() {
+            mainContext.clearRect(1, 1, canvasWidth, canvasHeight);
+            mainContext.fillStyle = '#F6F6F6';
+            mainContext.fillRect(1, 1, canvasWidth, canvasHeight);
+
+            for (var i = 1; i < circles.length; i++) {
+                var circle = circles[i];
+                circle.update();
+            }
+            
+            // call the draw function again!
+            requestAnimationFrame(draw);
+        }
+    </script>
+	<p>This was created as part of the <a href="http://www.kirupa.com/">
+	requestAnimationFrame tutorial</a>.</p>
+</body>
+
+</html>
