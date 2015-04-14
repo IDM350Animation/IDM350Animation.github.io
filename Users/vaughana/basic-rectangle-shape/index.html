@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.5.3/modernizr.min.js"></script>
+<meta charset="UTF-8">
+<title>Ch2Ex1 The Basic Rectangle</title>
+<script src="modernizr.js"></script>
+<script type="text/javascript">
+window.addEventListener('load', eventWindowLoaded, false);
+function eventWindowLoaded() {
+
+	canvasApp();
+    checkSolution();
+
+}
+
+
+function canvasSupport () {
+  	return Modernizr.canvas;
+}
+
+function canvasApp(){
+
+
+
+	if (!canvasSupport()) {
+			 return;
+  	}else{
+	    var theCanvas = document.getElementById('canvas');
+	    context = theCanvas.getContext('2d');
+	}
+
+
+	drawScreen();
+    checkSolution(context);
+
+}
+
+function checkSolution(submissioncontext) {
+   var solutionCanvas =  document.getElementById('solution_canvas');
+   var solutioncontext = solutionCanvas.getContext('2d');
+   solutioncontext.fillStyle   = '#000000';
+   solutioncontext.strokeStyle = '#ff00ff';
+   solutioncontext.lineWidth   = 2;
+   solutioncontext.strokeRect(0,  0, 60, 60);
+   solutioncontext.fillRect(0,  0, 60, 60);
+   solutioncontext.clearRect(10,10,40,40);
+   solutioncontext.fillRect(20,20,20,20);
+   var solutiondata = solutioncontext.getImageData(0, 0, 500, 500).data;
+    var canvasdata = submissioncontext.getImageData(0, 0, 500, 500).data;
+  var solutionbar = document.getElementById("solution_bar");
+
+  if (arraysIdentical(canvasdata, solutiondata)) {
+    solutionbar.innerHTML = "Correct!"
+  } else {
+    solutionbar.innerHTML = "Incorrect! Edit the JavaScript to get the solution above"
+  }
+}
+
+  // Via SO: http://stackoverflow.com/questions/7837456/comparing-two-arrays-in-javascript
+  function arraysIdentical(a, b) {
+    var i = a.length;
+    if (i != b.length) return false;
+    while (i--) {
+        if (a[i] !== b[i]) return false;
+    }
+    return true;
+};
+
+</script>
+</head>
+<body>
+<div style="position: absolute; top: 50px; left: 50px;">
+  <p id="solution_bar" style="color: red"></p>
+<canvas id="canvas" width="500" height="500">
+ Your browser does not support the HTML 5 Canvas.
+</canvas>
+  <canvas id="solution_canvas" style="display: none" width="500" height="500"></canvas>
+
+</div>
+</body>
+</html>
+
+<script>
+
+    function drawScreen() {
+        context.fillStyle   = '#000';
+        context.strokeStyle = '#ff00ff';
+        context.lineWidth   = 2;
+        context.fillRect(10,10,40,40);
+        context.strokeRect(0,  0, 60, 60);
+        context.clearRect(20,20,20,20);
+        context.fillRect(0, 0, 60, 60); //outside black square
+        context.fillStyle = '#FFF';
+        context.fillRect(10, 10, 40, 40); //inner white
+        context.fillStyle = '#000';
+        context.fillRect(20, 20, 20, 20); //inner black square
+    }
+
+</script>
