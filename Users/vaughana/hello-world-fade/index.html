@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.5.3/modernizr.min.js"></script>
+        <meta charset="UTF-8">
+        <title>CH1EX5 : Hello World Animated </title>
+    </head>
+    <body>
+        <div>
+            <canvas id="canvasOne" width="640" height="480">
+                Your browser does not support HTML 5 Canvas.
+            </canvas>
+        </div>
+    </body>
+</html>
+
+<script>
+
+    window.addEventListener("load", eventWindowLoaded, false);
+
+    function eventWindowLoaded () {
+        canvasApp();
+    }
+
+    function canvasSupport () {
+        return Modernizr.canvas;
+    }
+
+    function canvasApp () {
+
+        if (!canvasSupport()) {
+            return;
+        }
+
+        var theCanvas = document.getElementById("canvasOne");
+        var context = theCanvas.getContext("2d");
+
+        function drawScreen() {
+            //background
+            context.globalAlpha = 1;
+            context.fillStyle = "#000000";
+            context.fillRect(0, 0, 640, 480);
+            //image
+            context.globalAlpha = 0.25;
+            context.drawImage(helloWorldImage, 0, 0);
+            //text
+            context.font         = "72px Sans-Serif";
+            context.textBaseline = "top";
+
+            if (fadeIn) {
+                alpha += 0.01;
+                if (alpha >= 1)  {
+                    alpha = 1;
+                    fadeIn = false;
+                }
+            } else {
+                alpha -= 0.01;
+                if (alpha < 0)  {
+                    alpha = 0;
+                    fadeIn = true;
+                }
+            }
+
+            context.globalAlpha = alpha;
+            context.fillStyle    = "red";
+            context.fillText  (text, 150,200);
+
+        }
+
+        var text = "Hello World";
+        var alpha = 0;
+        var fadeIn = true;
+        //image
+        var helloWorldImage = new Image();
+        helloWorldImage.src = "http://orm-other.s3.amazonaws.com/html5canvasexamplecontent/chapter1/html5bg.jpg"; // Change from previously listed code; image src location is different
+        //box
+        function gameLoop() {
+            window.setTimeout(gameLoop, 40); //time in milliseconds
+            drawScreen();
+        }
+
+        gameLoop();
+
+    }
+
+
+</script>
+
