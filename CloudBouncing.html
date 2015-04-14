@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-us">
+ 
+<head>
+<meta charset="utf-8">
+<title>Bouncing Clouds</title>
+<script src="http://www.kirupa.com/js/prefixfree.min.js"></script>
+ 
+<style>
+#mainContent {
+    background-color: #A2BFCE;
+    border-radius: 4px;
+    padding: 10px;
+    width: 600px;
+    height: 300px;
+    overflow: hidden;
+}
+.cloud {
+    position: absolute;
+}
+#bigcloud {
+    animation: bobble 2s infinite;
+    margin-left: 100px;
+    margin-top: 15px;
+}
+#smallcloud {
+    animation: bobble 4s infinite;
+    margin-top: 65px;
+    margin-left: 200px;
+}
+#baldeagle {
+    animation: fly 4s infinite;
+    margin-top: 100px;
+    margin-left: -100px;
+}
+@keyframes bobble {
+    0% {
+        transform: translate3d(50px, 40px, 0px);
+        animation-timing-function: ease-in;
+    }
+    50% {
+        transform: translate3d(50px, 50px, 0px);
+        animation-timing-function: ease-out;
+    }
+    100% {
+        transform: translate3d(50px, 40px, 0px);
+}
+}
+@keyframes fly {
+    0% {
+        transform: translate3d(0px, 40px, 0px);
+        animation-timing-function: ease-in;
+    }
+    50% {
+        transform: translate3d(350px, 70px, 0px);
+        animation-timing-function: ease-out;
+    }
+    100% {
+        transform: translate3d(700px, 50px, 0px);
+    }
+}
+</style>
+</head>
+ 
+<body>
+    <div id="mainContent">
+        <img id="bigcloud" alt="#" class="cloud" height="154" src="http://www.kirupa.com/images/bigCloud.png" width="238">
+        <img id="smallcloud" alt="#" class="cloud" height="103" src="http://www.kirupa.com/images/smallCloud.png" width="158">
+        <img id="baldeagle" alt="#" class="eagle" height="75"
+    src="http://www.darrelldavis4d1.com/images/white_head_eagle-1920x1080-transparent1.png" width="100">
+    </div>
+</body>
+        
+        
+</html>
