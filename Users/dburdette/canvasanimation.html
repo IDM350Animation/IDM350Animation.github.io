@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+<title>Simple Canvas Example</title>
+<style>
+canvas {
+    border: 3px #CCC solid;
+}
+</style>
+</head>
+ 
+<body>
+<div id="container">
+    <canvas id="myCanvas" height="450" width="450"></canvas>
+    
+<script>
+ var mainCanvas = document.getElementById("myCanvas");
+var mainContext = mainCanvas.getContext('2d');
+ 
+var canvasWidth = mainCanvas.width;
+var canvasHeight = mainCanvas.height;
+ 
+var angle = 0;
+ 
+var requestAnimationFrame = window.requestAnimationFrame || 
+                            window.mozRequestAnimationFrame || 
+                            window.webkitRequestAnimationFrame || 
+                            window.msRequestAnimationFrame;
+ 
+function drawCircle() {
+    mainContext.clearRect(0, 0, canvasWidth, canvasHeight);
+     
+    // color in the background
+    mainContext.fillStyle = "#00FF00";
+    mainContext.fillRect(0, 0, canvasWidth, canvasHeight);
+     
+    // draw the circle
+    mainContext.beginPath();
+     
+    var radius = 25 + 300 * Math.abs(Math.cos(angle));
+    mainContext.arc(225, 225, radius, 0, Math.PI * 2, false);
+    mainContext.closePath();
+     
+    // color in the circle
+    mainContext.fillStyle = "#FF8000";
+    mainContext.fill();
+      
+    angle += Math.PI / 81;
+     
+    requestAnimationFrame(drawCircle);
+}
+drawCircle();
+</script>
+</body>
+</html>
