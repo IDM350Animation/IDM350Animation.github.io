@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<title>Falling Snow Example | kirupa.com</title>
+<style>
+body {
+    background-color: lightskyblue;
+    padding: 30px;
+    margin: 0px;
+}
+#snowflakeContainer {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.snowflake {
+    padding-left: 15px;
+    font-family: Cambria, Georgia, serif;
+    font-size: 14px;
+    line-height: 24px;
+    position: fixed;
+    color: dodgerblue;
+    user-select: none;
+    z-index: 1000;
+}
+.snowflake:hover {
+    cursor: default;
+}
+h1 {
+    font-size: 32px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FF3300;
+    padding: 15px;
+    color: #FFF;
+    margin: 0px;
+}
+p, ol {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", sans-serif;
+    font-size: 24px;
+    color: #CCC;
+}
+li {
+    margin-bottom: 24px;
+    padding-left: 10px;
+}
+</style>
+</head>
+<body>
+
+<div id="snowflakeContainer">
+    <p class="snowflake">*</p>
+</div>
+<div id="content">
+<h1>List of things I want from Santa</h1>
+    <ol>
+        <li>A job that pays six figures</li>
+        <li>Matching 401k</li>
+        <li>Recipe for the perfect bubble tea</li>
+        <li>Mercedes AMG G63 6x6</li>
+    </ol>
+</div>
+<script src="http://www.kirupa.com/js/fallingsnow_v6.js"></script>
+<script src="http://www.kirupa.com/js/prefixfree.min.js"></script>
+</body>
+
+</html>
