@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Scroll to Top Animation Example</title>
+        <style type="text/css">
+            body {
+                padding: 45px;
+                background-color: dimgray;
+            }
+            p {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 24px;
+                line-height: 40px;
+                padding: 30px;
+                margin-right: 60px;
+                color: lightgray;
+            }
+            h1 {
+                text-transform: capitalize;
+                font-family: "Fraanklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+                font-size: 48px;
+                padding: 10px;
+                margin: 0px;
+                background-color: gray;
+                color: lightpink;
+            }
+            #floatie {
+                position: fixed;
+                bottom: 0px;
+                right: 50px;
+                background-color: lightgray;
+                width: 50px;
+                height: 50px;
+                border: 2px gray solid;
+                font-weight: bold;
+                font-size: 48px;
+                text-align: center;
+                padding-top: 10px;
+                border-radius: 4px;
+                transition: transform .4s cubic-bezier(.59,-0.54,.72,1.59);
+                transform: translate(0px, 25px);
+                box-shadow: 0 0 10px 0 #666;
+            }
+            #floatie:hover {
+                background-color: lightpink;
+                border-color: deeppink;
+                cursor: pointer;
+                transform: translate(0px, 5px);
+            }
+            .centerImage {
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="floatie">
+            ^
+        </div>
+
+        <h1>Meet Your Mother</h1>
+        <p>If I should have a daughter, instead of Mom, she's gonna call me Point B because that way she knows that no matter what happens, at least she can always find her way to me. And I'm gonna paint the solar systems on the backs of her hands, so she has to learn the entire universe before she can say, "Oh I know that like the back of my hand." And she's gonna learn that this life will hit you, hard, in the face, and wait for you to get back up just so it can kick you in the stomach. But getting the wind knocked out of you is the only way to remind your lungs how much they like the taste of air. There is hurt [here] that cannot be fixed by band-aids or poetry, so the first time she realizes that Wonder Woman isn't coming, I'll make sure she knows she doesn't have to wear the cape all by herself. Because no matter how wide you stretch your fingers, your hands will always be too small to catch all the pain you want to heal. Believe me, I've tried. And "Baby," I'll tell her, "don't keep your nose up in the air like that. I know that trick, I've done it a million times. You're just smelling for smoke, so you can follow the trail back to a burning house so you can find the boy who lost everything in the fire, to see if you can save him. Or else, find the boy who lit the fire in the first place to see if you can change him, but I know she will anyway. So instead, I'll always keep an extra supply of chocolate, and rain boots nearby because there is no heartbreak that chocolate can't fix. Okay, there are a few heartbreaks that chocolate can fix, but that's what the rain boots are for. Because rain will wash away everything if you let it.</p>
+        <p class="centerImage">
+            <img alt="something" height="350" src="img/Best-songs-to-dedicate-to-your-mom-Mother%E2%80%99s-Day-Playlist.jpg" width="350"></p>
+        <p>I want her to look at the world through the underside of a glass-bottom boat. To look through a microscope at the galaxies that exist on the pinpoint of a human mind because that's the way my mom taught me. That there'll be days like this, there'll be days like this my momma said. When you open your hands to catch and wind up with only blisters and bruises, when you step out of a phone-booth and try to fly, and the very ones you want to save, are the ones standing on your cape. When your boots will fill with rain, and you'll be up to your knees in disappointment, and those are the very days you have all the more reason to say thank you. 'Cause there's nothing more beautiful than the way the ocean refuses to stop kissing the shoreline, no matter how many times it's sucked away. You will put the winned in winned some or lose some. You will put the star in starting over and over and no matter how many land minds erupt in a minute, be sure your mind lands on the beauty of this funny place called life, and yes, on a scale from 1 to over-trusting, I am pretty naive, but I want her to know that this world is made out of sugar, it can crumble so easily, but don't be afraid to stick your tongue out and taste it. "Baby," I'll tell her, "remember your momma is a worrier, and your papa is a warrior, and you are the girl with small hands and big eyes who never stops asking for more. Remember that good things come in three's, and so do bad things, and always apologize when you've done something wrong. But don't you ever apologize for the way your eyes refuse to stop shining, your voice is small, but don't ever stop singing. And when they finally hand you heartache, and they slip war and hatred under your door, and offer you handouts on street corners of cynicism and defeat, you tell them that they really 'aughta meet your mother.</p>
+        <p><a href="http://www.kirupa.com/" target="_parent">Return to kirupa.com</a>.</p>
+
+        <script src="http://www.kirupa.com/prefixfree.min.js"></script>
+        <script src="http://kirupa.googlecode.com/svn/trunk/easing.js"></script>
+        <script>
+            var requestAnimationFrame = window.requestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.msRequestAnimationFrame;
+            var bodyElement = document.querySelector("body");
+            var floatie = document.querySelector("#floatie");
+            var currentScrollPosition;
+            var iteration;
+            var start = false;
+            function setup() {
+                // do something when the up arrow is clicked
+                floatie.addEventListener("click", animateToTopOfPage, false);
+                // deal with the mouse wheel
+                bodyElement.addEventListener("mousewheel", stopEverything, false);
+                bodyElement.addEventListener("DOMMouseScroll", stopEverything, false);
+                // wheeeeeeee!
+                animationLoop();
+            }
+            setup();
+            //
+            // kick of the animation to scroll your window back to the top
+            //
+            function animateToTopOfPage(e) {
+                currentScrollPosition = getScrollPosition();
+                start ^= true;
+                iteration = 0;
+            }
+            //
+            // stop the animation and reset start and iteration
+            //
+            function stopEverything() {
+                start = false;
+            }
+            //
+            // a cross-browser (minus Opera) way of getting the current scroll position
+            //
+            function getScrollPosition() {
+                if (document.documentElement.scrollTop == 0) {
+                    return document.body.scrollTop;
+                } else {
+                    return document.documentElement.scrollTop;
+                }
+            }
+            //
+            // kicks into high gear only when the start variable is true
+            //
+            function animationLoop() {
+                // start is true when you click on the up arrow
+                if (start) {
+                    // where the magic happens
+                    window.scrollTo(0, easeInOutQuad(iteration,
+                                                    currentScrollPosition,
+                                                    -currentScrollPosition,
+                                                    50));
+                    iteration++;
+                    // once you reach the top of the document, stop the scrolling
+                    if (getScrollPosition() <= 0) {
+                        stopEverything();
+                    }
+                }
+                requestAnimationFrame(animationLoop);
+            }
+        </script>
+    </body>
+</html>
