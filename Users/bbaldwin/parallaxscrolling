@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+<meta content="en-us" http-equiv="Content-Language">
+<meta charset="utf-8">
+<meta content="A high performance parallax scrolling example." name="description">
+<meta content="Parallax Scrolling Example" name="title">
+<title>Parallax Scrolling Example</title>
+<style>
+body {
+    padding: 45px;
+    background-color: #010001;
+}
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px;
+    line-height: 40px;
+    padding: 30px;
+    margin-right: 60px;
+    color: #FFFFFF;
+}
+p span {
+    background-color: rgba(1, 0, 1, .85);
+}
+a {
+    color: #AFDBF2;
+}
+h1 {
+    text-transform: capitalize;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 40px;
+    padding: 10px;
+    margin: 0px;
+    background-color: rgba(101, 158, 166, .75);
+    color: #EEE;
+}
+#parallaxContainer {
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+#parallaxContainer img {
+    width: 100%;
+    height: auto;
+}
+</style>
+</head>
+  
+<body>
+<div id="parallaxContainer">
+    <img src="http://www.cosmeticgroup.com/blog/wp-content/uploads/2013/09/Fade-to-Black.png">
+</div>
+<h1>Stopping by Woods on a Snowy Evening</h1>
+<p><span>Whose woods these are I think I know.
+His house is in the village, though; 
+He will not see me stopping here
+To watch his woods fill up with snow.</span></p>
+<p><span>My little horse must think it queer
+To stop without a farmhouse near
+Between the woods and frozen lake
+The darkest evening of the year.
+</span></p>
+<p><span>He gives his harness bells a shake
+To ask if there is some mistake.
+The only other sound's the sweep
+Of easy wind and downy flake.
+</span></p>
+<p><span>The woods are lovely, dark, and deep,
+But I have promises to keep,
+And miles to go before I sleep,
+And miles to go before I sleep. 
+</span></p>
+<p><a href="http://www.kirupa.com/" target="_parent">Return to kirupa.com</a>.</p>
+ 
+<script src="http://www.kirupa.com/prefixfree.min.js"></script>
+<script>
+ 
+var requestAnimationFrame = window.requestAnimationFrame || 
+                            window.mozRequestAnimationFrame || 
+                            window.webkitRequestAnimationFrame ||
+                            window.msRequestAnimationFrame;
+ 
+var transforms = ["transform", 
+                  "msTransform", 
+                  "webkitTransform", 
+                  "mozTransform", 
+                  "oTransform"];
+                   
+var transformProperty = getSupportedPropertyName(transforms);
+ 
+var imageContainer = document.querySelector("#parallaxContainer");
+ 
+var scrolling = false;
+var mouseWheelActive = false;
+ 
+var count = 0;
+var mouseDelta = 0;
+ 
+//
+// vendor prefix management
+//
+function getSupportedPropertyName(properties) {
+    for (var i = 0; i < properties.length; i++) {
+        if (typeof document.body.style[properties[i]] != "undefined") {
+            return properties[i];
+        }
+    }
+    return null;
+}
+ 
+function setup() {
+    window.addEventListener("scroll", setScrolling, false);
+     
+    // deal with the mouse wheel
+    window.addEventListener("mousewheel", mouseScroll, false);
+    window.addEventListener("DOMMouseScroll", mouseScroll, false);
+     
+    animationLoop();
+}
+setup();
+ 
+function mouseScroll(e) {
+    mouseWheelActive = true;
+         
+    // cancel the default scroll behavior
+    if (e.preventDefault) {
+        e.preventDefault();
+    }
+     
+    // deal with different browsers calculating the delta differently
+    if (e.wheelDelta) {
+        mouseDelta = e.wheelDelta / 120;
+    } else if (e.detail) {
+        mouseDelta = -e.detail / 3;
+    }
+}
+ 
+//
+// Called when a scroll is detected
+//
+function setScrolling() {
+    scrolling = true;
+}
+ 
+//
+// Cross-browser way to get the current scroll position
+//
+function getScrollPosition() {
+    if (document.documentElement.scrollTop == 0) {
+        return document.body.scrollTop;
+    } else {
+        return document.documentElement.scrollTop;
+    }
+}
+ 
+//
+// A performant way to shift our image up or down
+//
+function setTranslate3DTransform(element, yPosition) {
+    var value = "translate3d(0px" + ", " + yPosition + "px" + ", 0)";
+    element.style[transformProperty] = value;
+}
+ 
+function animationLoop() {
+    // adjust the image's position when scrolling
+    if (scrolling) {
+        setTranslate3DTransform(imageContainer, 
+                                -1 * getScrollPosition() / 2);
+        scrolling = false;
+    }
+     
+    // scroll up or down by 10 pixels when the mousewheel is used
+    if (mouseWheelActive) {
+        window.scrollBy(0, -mouseDelta * 10);
+        count++;
+         
+        // stop the scrolling after a few moments
+        if (count > 20) {
+            count = 0;
+            mouseWheelActive = false;
+            mouseDelta = 0;
+        }
+    }
+         
+    requestAnimationFrame(animationLoop);
+}
+ 
+</script>
+</body>
+</html>
