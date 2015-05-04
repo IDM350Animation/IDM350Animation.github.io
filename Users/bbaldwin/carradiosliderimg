@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Hello...</title>
+<style type="text/css">
+</head>
+<body>
+<div class="pictureContainer">
+<img src="img/PicMonkey%20Collage.jpg" height="300" width="150"/>
+</div>
+<style>
+.pictureContainer {
+    height: 150px;
+    width: 300px;
+    overflow: hidden;
+}
+.pictureContainer img {
+    position: relative;
+    top: 0px;
+}
+.pictureContainer img:hover {
+    top: -150px;
+}
+.pictureContainer img {
+    position: relative;
+    top: 0px;
+     
+    transition: top .2s ease-in-out;
+}
+.pictureContainer img:hover {
+    top: -150px;
+}
+</body>
+</html>
