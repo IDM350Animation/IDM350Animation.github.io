@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>|Brittney Baldwin|</title>
+        <meta name="description" content="Makeup Artist">
+        <link rel="stylesheet" href="main.css">
+          <div class="row">
+
+    </head>
+    <body>
+        <div id="main">
+        <h1>Welcome!</h1>
+        </div>
+        <ul>
+    <li><a href="#" target="_blank">
+    Home</a></li>
+    <li><a href="#">
+    About</a></li>
+    <li><a href="#" target="_blank">
+    Contact</a></li>
+</ul>
+<script src="http://www.kirupa.com/prefixfree.min.js"></script>
+        
+  <p>Bacon ipsum dolor sit amet chicken pork loin hamburger ball tip, swine tenderloin salami meatball boudin tri-tip fatback shank bacon. Pork salami kevin, brisket spare ribs strip steak ham hock porchetta. Pork belly short loin tail porchetta. Pork pig meatball, beef ribs doner jerky tri-tip hamburger filet mignon strip steak ball tip ham tail tongue corned beef.</p>
+
+  <p>Flank spare ribs capicola, strip steak biltong pancetta bresaola tri-tip cow landjaeger. Short ribs sirloin beef ribs, flank capicola ribeye turducken. Sirloin boudin andouille tail. Ham flank tail sausage t-bone, jerky landjaeger kevin porchetta ground round pork belly.</p>
+
+  <p>Pork loin doner biltong shoulder meatball flank. Sirloin shankle ground round tail, short loin prosciutto beef ribs salami pork pancetta kielbasa. Brisket spare ribs jerky filet mignon flank. Turducken ham sausage pork loin salami. Ball tip meatloaf shank pancetta hamburger meatball. Jowl beef pork loin tenderloin turducken, pastrami capicola filet mignon ham hock pork belly t-bone jerky ball tip kevin.</p>
+
+  <p>Filet mignon shank pastrami pork loin ham jerky corned beef chuck drumstick ribeye prosciutto pork belly tail. Beef leberkas brisket ham hock tenderloin tail tri-tip pork chop. Corned beef boudin andouille tail fatback chicken strip steak biltong pancetta pork loin tri-tip landjaeger pastrami kevin. Tongue spare ribs kevin ribeye shoulder swine.</p>
+
+  <p>Chicken kielbasa swine ham hock filet mignon strip steak bacon fatback pork t-bone. Ground round shankle tongue, jowl flank spare ribs beef leberkas ham boudin shank capicola short ribs. Drumstick pork loin turkey pork chop salami andouille pork belly. Short loin tongue tri-tip, hamburger filet mignon pastrami doner shoulder turkey ball tip t-bone jerky ham chicken.</p>
+
+  <p>Ground round flank pork loin salami, cow biltong hamburger swine brisket tongue tenderloin drumstick meatball. Biltong tongue salami ham shankle, leberkas meatloaf sirloin ball tip. Pork loin pastrami spare ribs beef capicola sausage kevin filet mignon pork chop. Bacon jerky turkey shoulder cow capicola ball tip shank. Ham tongue tail tri-tip kielbasa ham hock frankfurter meatball cow brisket. Shankle sausage filet mignon biltong pork loin. Short ribs spare ribs chuck pig meatloaf shoulder cow tail brisket biltong ball tip ham hock.</p>
+              
+
+<footer>        
+        <div id="floatie">
+            ^
+        </div>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+
+<a href="https://twitter.com/its_britt_baby" class="icon-button twitter">
+  <i class="fi-social-twitter"></i><span></span>
+</a>
+<a href="https://www.facebook.com/muabrittneybaldwin?ref=hl" class="icon-button facebook">
+  <i class="fi-social-facebook"></i><span></span>
+</a>
+<a href="https://plus.google.com/u/0/115975883877980865086/posts" class="icon-button gplus">
+  <i class="fi-social-google-plus"></i><span></span>
+</a>
+         <script src="http://www.kirupa.com/prefixfree.min.js"></script>
+        <script src="http://kirupa.googlecode.com/svn/trunk/easing.js"></script>
+        <script>
+            var requestAnimationFrame = window.requestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.msRequestAnimationFrame;
+            var bodyElement = document.querySelector("body");
+            var floatie = document.querySelector("#floatie");
+            var currentScrollPosition;
+            var iteration;
+            var start = false;
+            function setup() {
+                // do something when the up arrow is clicked
+                floatie.addEventListener("click", animateToTopOfPage, false);
+                // deal with the mouse wheel
+                bodyElement.addEventListener("mousewheel", stopEverything, false);
+                bodyElement.addEventListener("DOMMouseScroll", stopEverything, false);
+                // wheeeeeeee!
+                animationLoop();
+            }
+            setup();
+            //
+            // kick of the animation to scroll your window back to the top
+            //
+            function animateToTopOfPage(e) {
+                currentScrollPosition = getScrollPosition();
+                start ^= true;
+                iteration = 0;
+            }
+            //
+            // stop the animation and reset start and iteration
+            //
+            function stopEverything() {
+                start = false;
+            }
+            //
+            // a cross-browser (minus Opera) way of getting the current scroll position
+            //
+            function getScrollPosition() {
+                if (document.documentElement.scrollTop == 0) {
+                    return document.body.scrollTop;
+                } else {
+                    return document.documentElement.scrollTop;
+                }
+            }
+            //
+            // kicks into high gear only when the start variable is true
+            //
+            function animationLoop() {
+                // start is true when you click on the up arrow
+                if (start) {
+                    // where the magic happens
+                    window.scrollTo(0, easeInOutQuad(iteration,
+                                                    currentScrollPosition,
+                                                    -currentScrollPosition,
+                                                    50));
+                    iteration++;
+                    // once you reach the top of the document, stop the scrolling
+                    if (getScrollPosition() <= 0) {
+                        stopEverything();
+                    }
+                }
+                requestAnimationFrame(animationLoop);
+            }
+        </script>             
+</footer>        
+    </body>
+</html>
