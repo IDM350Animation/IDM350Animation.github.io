@@ -1,0 +1,415 @@
+<head>
+<style>
+    .nav-wrap { margin: 50px auto;  background-color: rgba(0,0,0,0.6); border-top: 2px solid white; border-bottom: 2px solid white; }
+#example-one { margin: 0 auto; list-style: none; position: relative; width: 960px; }
+#example-one li { display: inline; }
+#example-one li a { color: #bbb; font-size: 14px; display: block; float: left; padding: 6px 10px 4px 10px; text-decoration: none; text-transform: uppercase; }
+#example-one li a:hover { color: white; }
+#magic-line { position: absolute; bottom: -2px; left: 0; width: 100px; height: 2px; background: #fe4902; }
+   #nav-wrap ul li img:hover {
+       
+        transform: scale(1.5,1.5);
+       
+   }
+    
+    #nav-wrap {
+    
+        display: block;
+        line-height: 1;
+    }
+        #nav-wrap ul {
+        display: inline-block;
+        }
+            
+    #nav-wrap ul li {
+        list-style: none;
+        text-align: center;
+        display: inline-block;
+    }
+    
+    
+    #floatie {
+    position: fixed;
+    bottom: 0px;
+    right: 53px;
+    background-color: #FFFF00;
+    width: 50px;
+    height: 50px;
+    border: 2px #FF9900 solid;
+    font-weight: bold;
+    font-size: 48px;
+    text-align: center;
+    padding-top: 10px;
+    border-radius: 4px;
+    transition: transform .2s cubic-bezier(.59,-0.54,.72,1.59);
+/*    transform: translate(40px, -20px);*/
+    box-shadow: 0 0 10px 0 #666;
+}
+#floatie:hover {
+    background-color: #CCFF33;
+    border-color: #669900;
+    cursor: pointer;
+    transform: translate(0px, 4px);
+}    
+    #contentContainer {
+            width: 550px;
+            height: 350px;
+            border: 5px black solid;
+            overflow: hidden;
+        }
+
+        #wrapper {
+            width: 2200px;
+            position: relative;
+            left: 0px;
+            transition: left .5s ease-in-out;
+        }
+
+        .content {
+            float: left;
+            height: 350px;
+            white-space: normal;
+            width: 550px;
+            text-align: center;
+            padding-top: 70px;
+            background-repeat: no-repeat;
+        }
+
+            .content p {
+                font-family: Arial, sans-serif;
+                font-weight: bold;
+                opacity: .3;
+                font-size: 144px;
+                margin: 0;
+            }
+
+		#itemOne {
+		    background-color: #0099CC;
+		    background-image: url("http://www.flmnh.ufl.edu/fish/gallery/Descript/leatherjacket/prey.JPG" );
+		}
+		
+		#itemTwo {
+		    background-color: #FFCC00;
+		    background-image: url("http://www.lake-link.com/images/_cfimage_cache/bluegill_550_0_0_0.jpg");
+		}
+		
+		#itemThree {
+		    background-color: #FF6666;
+		    background-image: url("http://www.atoztheusa.com/state_images/Nature/AL/S-AL-fish3.jpg");
+		}
+		
+		#itemFour {
+		    background-color: #E8E8E8;
+		    background-image: url("http://www.vyperlook.com/wp-content/uploads/massupload/94944crocodile-fish10.jpg");
+		}
+
+        #navLinks {
+            text-align: center;
+            width: 550px;
+        }
+
+            #navLinks ul {
+                margin: 0px;
+                padding: 0px;
+                display: inline-block;
+                margin-top: 6px;
+            }
+
+                #navLinks ul li {
+                    float: left;
+                    text-align: center;
+                    margin: 10px;
+                    list-style: none;
+                    cursor: pointer;
+                    background-color: #CCCCCC;
+                    padding: 5px;
+                    border-radius: 50%;
+                    border: black 5px solid;
+                }
+
+                    #navLinks ul li:hover {
+                        background-color: #FFFF00;
+                    }
+
+                    #navLinks ul li.active {
+                        background-color: #333333;
+                        color: #FFFFFF;
+                        outline-width: 7px;
+                    }
+
+                        #navLinks ul li.active:hover {
+                            background-color: #484848;
+                            color: #FFFFFF;
+                        }
+    </style>
+</head>
+
+<body>
+    
+    
+    <div id="nav-wrap">
+ <ul>
+    <li><img src="img/bag45.png" width="50" height="50"></li>
+    <li><img src="img/active5.png" width="50" height="50"></li>
+    <li><img src="img/add13.png" width="50" height="50"></li>
+    <li><img src="img/alarm68.png" width="50" height="50"></li>
+    <li><img src="img/balance6.png" width="50" height="50"></li>
+    <li><img src="img/basket30.png" width="50" height="50"></li>
+    <li><img src="img/battery166.png" width="50" height="50"></li>
+    <li><img src="img/battery167.png" width="50" height="50"></li>
+ </ul>
+</div>
+    <div id="floatie">
+    ^
+</div>
+    <div id="contentContainer">
+        <div id="wrapper">
+            <div id="itemOne" class="content">
+                <!-- your content for the first item goes here --> 
+            </div>
+            <div id="itemTwo" class="content">
+                <!-- your content for the second item goes here -->
+            </div>
+            <div id="itemThree" class="content">
+                <!-- your content for the third item goes here -->
+            </div>
+            <div id="itemFour" class="content">
+                <!-- your content for the fourth item goes here -->
+            </div>
+        </div>
+    </div>
+    <div id="navLinks">
+        <ul>
+            <li class="itemLinks" data-pos="0px"></li>
+            <li class="itemLinks" data-pos="-550px"></li>
+            <li class="itemLinks" data-pos="-1100px"></li>
+            <li class="itemLinks" data-pos="-1650px"></li>
+        </ul>
+    </div>
+    
+    <script src="http://www.kirupa.com/html5/examples/js/prefixfree.min.js"></script>
+    
+    <script>
+    	// just querying the DOM...like a boss!
+        var links = document.querySelectorAll(".itemLinks");
+        var wrapper = document.querySelector("#wrapper");
+        
+        // the activeLink provides a pointer to the currently displayed item
+        var activeLink = 0;
+        
+        // setup the event listeners
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            link.addEventListener('click', setClickedItem, false);
+            
+            // identify the item for the activeLink
+            link.itemID = i;
+        }
+
+        // set first item as active
+        links[activeLink].classList.add("active");
+
+        function setClickedItem(e) {
+            removeActiveLinks();
+
+            var clickedLink = e.target;
+            activeLink = clickedLink.itemID;
+            
+            changePosition(clickedLink);
+        }
+		
+        function removeActiveLinks() {
+            for (var i = 0; i < links.length; i++) {
+                links[i].classList.remove("active");
+            }
+        }
+        
+        // Handle changing the slider position as well as ensure
+        // the correct link is highlighted as being active
+		function changePosition(link) {
+        	var position = link.getAttribute("data-pos");
+            wrapper.style.left = position;
+            
+            link.classList.add("active");
+        }
+    </script>
+    <script src="http://www.kirupa.com/prefixfree.min.js"></script>
+<script src="http://kirupa.googlecode.com/svn/trunk/easing.js"></script>
+<script>
+ 
+var requestAnimationFrame = window.requestAnimationFrame || 
+                            window.mozRequestAnimationFrame || 
+                            window.webkitRequestAnimationFrame ||
+                            window.msRequestAnimationFrame;
+ 
+var bodyElement = document.querySelector("body");
+var floatie = document.querySelector("#floatie");
+ 
+ 
+var currentScrollPosition;
+var iteration;
+var start = false;
+ 
+function setup() {
+    // do something when the up arrow is clicked
+    floatie.addEventListener("click", animateToTopOfPage, false);
+     
+    // deal with the mouse wheel
+    bodyElement.addEventListener("mousewheel", stopEverything, false);
+    bodyElement.addEventListener("DOMMouseScroll", stopEverything, false);
+     
+    // wheeeeeeee!
+    animationLoop();
+}
+setup();
+ 
+//
+// kick of the animation to scroll your window back to the top
+//
+function animateToTopOfPage(e) {
+    currentScrollPosition = getScrollPosition();
+     
+    start ^= true;
+    iteration = 0;
+}
+ 
+//
+// stop the animation and reset start and iteration
+//
+function stopEverything() {
+    start = false;
+}
+ 
+//
+// a cross-browser (minus Opera) way of getting the current scroll position
+//
+function getScrollPosition() {
+    if (document.documentElement.scrollTop == 0) {
+        return document.body.scrollTop;
+    } else {
+        return document.documentElement.scrollTop;
+    }
+}
+ 
+//
+// kicks into high gear only when the start variable is true
+//
+function animationLoop() {
+    // start is true when you click on the up arrow
+    if (start) {
+        // where the magic happens                           
+        window.scrollTo(0, easeInOutExpo(iteration, 
+                                        currentScrollPosition,
+                                        -currentScrollPosition, 
+                                        50));
+         
+        iteration++;
+         
+        // once you reach the top of the document, stop the scrolling
+        if (getScrollPosition() <= 0) {
+            stopEverything();
+        }
+    }
+    requestAnimationFrame(animationLoop);
+}
+</script>
+    <script>$(function() {
+
+    var $el, leftPos, newWidth,
+        $mainNav = $("#example-one");
+    
+    $mainNav.append("<li id='magic-line'></li>");
+    var $magicLine = $("#magic-line");
+    
+    $magicLine
+        .width($(".current_page_item").width())
+        .css("left", $(".current_page_item a").position().left)
+        .data("origLeft", $magicLine.position().left)
+        .data("origWidth", $magicLine.width());
+        
+    $("#example-one li a").hover(function() {
+        $el = $(this);
+        leftPos = $el.position().left;
+        newWidth = $el.parent().width();
+        $magicLine.stop().animate({
+            left: leftPos,
+            width: newWidth
+        });
+    }, function() {
+        $magicLine.stop().animate({
+            left: $magicLine.data("origLeft"),
+            width: $magicLine.data("origWidth")
+        });    
+    });
+});
+    </script>
+    <p>The term fishing may be applied to catching other aquatic animals such as molluscs, cephalopods, crustaceans, and echinoderms. The term is not normally applied to catching farmed fish, or to aquatic mammals, such as whales, where the term whaling is more appropriate.
+    </p>
+    <br>
+    <p>According to FAO statistics, the total number of commercial fishermen and fish farmers is estimated to be 38 million. Fisheries and aquaculture provide direct and indirect employment to over 500 million people in developing countries.[1] In 2005, the worldwide per capita consumption of fish captured from wild fisheries was 14.4 kilograms, with an additional 7.4 kilograms harvested from fish farms.[2] In addition to providing food, modern fishing is also a recreational pastime.
+    </p>
+    <br>
+    <p>Fishing is an ancient practice that dates back to at least the beginning of the Paleolithic period about 40,000 years ago.[3] Isotopic analysis of the skeletal remains of Tianyuan man, a 40,000-year old modern human from eastern Asia, has shown that he regularly consumed freshwater fish.[4][5] Archaeology features such as shell middens,[6] discarded fish bones, and cave paintings show that sea foods were important for survival and consumed in significant quantities.
+    </p>
+    <br>
+    <p>During this period, most people lived a hunter-gatherer lifestyle and were, of necessity, constantly on the move. However, where there are early examples of permanent settlements (though not necessarily permanently occupied) such as those at Lepenski Vir, they are almost always associated with fishing as a major source of food.
+    </p>
+    <br>
+    <p>The early evolution of fishing as recreation is not clear. For example, there is anecdotal evidence for fly fishing in Japan, however, fly fishing was likely to have been a means of survival, rather than recreation. The earliest English essay on recreational fishing was published in 1496, by Dame Juliana Berners, the prioress of the Benedictine Sopwell Nunnery. The essay was titled Treatyse of Fysshynge wyth an Angle,[14] and included detailed information on fishing waters, the construction of rods and lines, and the use of natural baits and artificial flies.[15]
+    </p>
+    
+</body>
+
+ <style>
+        body {
+            background-color: #EFEFEF;
+            padding: 25px;
+        }
+
+        #main {
+            width: 450px;
+        }
+
+            #main .icon {
+                padding: 20px;
+                border-radius: 40px;
+            }
+
+                #main .icon:nth-child(2n) {
+                    animation-name: keyframes1;
+                    animation-iteration-count: infinite;
+                    transform-origin: 50% 10%;
+                }
+
+                #main .icon:nth-child(2n-1) {
+                    animation-name: keyframes2;
+                    animation-iteration-count: infinite;
+                    animation-direction: alternate;
+                    transform-origin: 30% 5%;
+                }
+
+        @keyframes keyframes1 {
+            0% {
+                transform: rotate(-1deg);
+                animation-timing-function: ease-in;
+            }
+
+            50% {
+                transform: rotate(1.5deg);
+                animation-timing-function: ease-out;
+            }
+        }
+
+        @keyframes keyframes2 {
+            0% {
+                transform: rotate(1deg);
+                animation-timing-function: ease-in;
+            }
+
+            50% {
+                transform: rotate(-1.5deg);
+                animation-timing-function: ease-out;
+            }
+        }
+    </style>
+</head>
