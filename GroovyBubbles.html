@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+        #myCanvas {
+            border-width: 1px;
+            border-style: dotted;
+            border-color: Gray;
+        }
+
+        h1 {
+            font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+            font-size: x-large;
+            color: yellow;
+        }
+
+        body {
+            background-color: #F6F6F6;
+            padding: 40px;
+        }
+
+        p {
+            font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+            font-size: 11px;
+        }
+
+        a {
+            color: burlywood;
+            text-decoration: none;
+        }
+
+        a:hover {
+            background-color: whitesmoke;
+            border-radius: 2px;
+        }
+    </style>
+    <title>"Groovy" Bubbles</title>
+</head>
+
+<body>
+
+    <h1>"Groovy" Bubbles</h1>
+    <div id="container">
+        <canvas id="myCanvas" height="400" width="267"></canvas>
+    </div>
+    <script>
+
+        var mainCanvas = document.getElementById("myCanvas");
+        var mainContext = mainCanvas.getContext('2d');
+
+        var canvasWidth = mainCanvas.width;
+        var canvasHeight = mainCanvas.height;
+
+        // this array contains a reference to every bubble that you create
+        var bubbles = new Array();
+
+        //
+        // The Bubble "class" is responsible for creating the bubble objects and defining the various properties
+        // they have
+        //
+        function Bubble(rotationRadius, sign, speed, xIncrement, yIncrement, bubbleRadius, initialX, initialY, color) {
+            this.rotationRadius = rotationRadius;
+            this.bubbleRadius = bubbleRadius;
+            this.initialX = this.currentX = initialX;
+            this.initialY = this.currentY = initialY;
+            this.color = color;
+
+            this.counter = 0;
+            this.angle = 0;
+            this.xIncrement = xIncrement;
+            this.yIncrement = yIncrement;
+            this.sign = sign;
+
+            this.speed = speed;
+        }
+
+        Bubble.prototype.update = function () {
+            this.counter += 1;
+            this.angle += this.yIncrement;
+
+            // move the bubble up
+            this.currentY -= (this.speed + (this.counter * this.yIncrement) / 100 + Math.sin(this.angle) + 1);
+
+            // move the bubble to the left or the right depending on the value for 'sign'
+            if (this.currentY < canvasHeight) {
+                if (this.sign > 0) {
+                    this.currentX += (this.speed * this.xIncrement + this.rotationRadius * Math.cos(this.angle));
+                } else {
+                    this.currentX -= (this.speed * this.xIncrement - this.rotationRadius * Math.cos(this.angle));
+                }
+            }
+
+            // as the bubble starts to go higher, start reducing its size ever so slightly
+            if (this.currentY * 2 < canvasHeight) {
+                this.bubbleRadius *= .95;
+            }
+
+            // if the width of your bubble becomes less than 2 pixels, reset the position of the bubble
+            if (this.bubbleRadius < 2) {
+                this.resetPosition();
+            }
+
+            // if the bubble floats well beyond the visible portion of the canvas, reset the position of the bubble
+            if (this.currentY < -100) {
+                this.resetPosition();
+            }
+
+            // if the bubble goes too far to the left or to the right, reset the position of the bubble
+            if ((this.currentX > (canvasWidth + 100)) || (this.currentX < -100)) {
+                this.resetPosition();
+            }
+
+            // The following code is responsible for actually drawing the bubble on the screen
+            mainContext.beginPath();
+            mainContext.arc(this.currentX, this.currentY, this.bubbleRadius, 0, Math.PI * 2, false);
+            mainContext.closePath();
+            mainContext.fillStyle = this.color;
+            mainContext.fill();
+        };
+
+        //
+        // This function resets the position of the bubble by setting all position-related properties
+        // to a new value
+        //
+        Bubble.prototype.resetPosition = function () {
+            this.counter = 0;
+            this.currentY = getYPosition();
+            this.currentX = getXPosition();
+            this.xIncrement = getIncrement();
+            this.yIncrement = getIncrement();
+            this.bubbleRadius = getBubbleRadius();
+            this.speed = getSpeed();
+            this.rotationRadius = getRotationRadius();
+        }
+
+        //
+        // This function does two things:
+        //    1. Draws the initial round of bubbles with manually specified properties
+        //    2. Draws the remaining bubbles with randomly specified properties
+        //
+        function createBubbles() {
+            // Manually specify the bubbles and their properties to get as close to the intended opening sequence as possible
+            bubbles.push(new Bubble(getRotationRadius(), 1, .1, 4, .09, 7, canvasWidth * .5 - 30, canvasHeight + 140, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), 1, .3, 3, .11, 8, canvasWidth * .5 - 20, canvasHeight + 140, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), 1, .6, 2, .19, 9, canvasWidth * .5 - 10, canvasHeight + 140, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), 1, .8, .5, .23, 5, canvasWidth * .5 - 5, canvasHeight + 140, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), -1, .9, .56, .26, 6, canvasWidth * .5 + 5, canvasHeight + 140, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), -1, .7, 1, .13, 7, canvasWidth * .5 + 10, canvasHeight + 140, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), -1, .5, 3, .10, 8, canvasWidth * .5 + 20, canvasHeight + 140, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), -1, .2, 4, .07, 9, canvasWidth * .5 + 30, canvasHeight + 140, getColor()));
+
+            bubbles.push(new Bubble(getRotationRadius(), 1, .1, 4, .09, 7, canvasWidth * .5 - 30, canvasHeight + 240, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), 1, .3, 3, .11, 8, canvasWidth * .5 - 20, canvasHeight + 240, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), 1, .6, 2, .19, 9, canvasWidth * .5 - 10, canvasHeight + 240, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), 1, .8, .5, .23, 5, canvasWidth * .5 - 5, canvasHeight + 240, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), -1, .9, .56, .26, 6, canvasWidth * .5 + 5, canvasHeight + 240, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), -1, .7, 1, .13, 7, canvasWidth * .5 + 10, canvasHeight + 240, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), -1, .5, 3, .10, 8, canvasWidth * .5 + 20, canvasHeight + 240, getColor()));
+            bubbles.push(new Bubble(getRotationRadius(), -1, .2, 4, .07, 9, canvasWidth * .5 + 30, canvasHeight + 240, getColor()));
+
+            // For the remaining bubbles, create them and specify their properties in a more random fashion
+            for (var i = 0; i < 50; i++) {
+                var initialX = getXPosition();
+                var initialY = 600 + 100 * i + getYPosition();
+                var speed = getSpeed();
+                var bubbleRadius = getBubbleRadius();
+                var rotationRadius = getRotationRadius();
+                var color = getColor();
+                var sign;
+
+                var signHelper = Math.floor(Math.random() * 2);
+
+                // Randomly specify whether the circle will be moving left or moving right
+                if (signHelper == 1) {
+                    sign = -1;
+                } else {
+                    sign = 1;
+                }
+
+                // create the Bubble object that will bring your bubble to life (and the award for cheesiest comment goes to...)
+                var bubble = new Bubble(rotationRadius, sign, speed, getIncrement(), getIncrement() * .5, bubbleRadius, initialX, initialY, color);
+                bubbles.push(bubble);
+            }
+            // call the draw function every 20 milliseconds
+            setInterval(draw, 20);
+        }
+        createBubbles();
+
+        //
+        // This function is responsible for drawing the canvas and telling each bubble to position and draw itself accordingly
+        //
+        function draw() {
+            mainContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            mainContext.fillStyle = '#CFF9FE';
+            mainContext.fillRect(0, 0, canvasWidth, canvasHeight);
+
+            for (var i = 0; i < bubbles.length; i++) {
+                var bubble = bubbles[i];
+                bubble.update();
+            }
+        }
+
+        //
+        // Returns a color randomly picked from the finite list of colors we want
+        //
+        function getColor() {
+            var colors = ['#F7FE2E', '#01DF3A', '#BF00FF',
+                          '#FA8258', '#FFBF00', '#F3E2A9',
+                          '#FE9A2E', '#FF00FF', '#9CEDF5',
+                          '#0174DF', '#BF00FF', '#8EEBF6',
+                          '#2EFE2E', '#88DFF1', '#85E2EC',
+                          '#FE2E2E', '#8A0808', '#8FD8EA',
+                          '#A6D4E6', '#92C6E1', '#2E2EFE',
+                          '#A7E7EB', '#40FF00'];
+
+            return (colors[Math.floor(Math.random() * colors.length)]);
+        }
+
+        //
+        // Returns a value that determines the radius of the oscillation as the bubble is moving
+        //
+        function getRotationRadius() {
+            return (1 + Math.random() * 2);
+        }
+
+        //
+        // Returns the initial size of a bubble
+        //
+        function getBubbleRadius() {
+            return (Math.round(3 + Math.random() * 6));
+        }
+
+        //
+        // Returns the speed at which the bubbles are moving
+        //
+        function getSpeed() {
+            return (.2 + Math.random() * 3);
+        }
+
+        //
+        // Returns a value that is used to increment the angle and position by a fixed amount each frame tick
+        //
+        function getIncrement() {
+            return (.1 + Math.random() * .5);
+        }
+        
+        //
+        // Returns the horizontal position the bubble should appear in
+        //
+        function getXPosition() {
+            return (Math.round(-20 + Math.random() * (canvasWidth + 40)));
+        }
+
+        //
+        // Returns the vertical position below the canvas the bubble should appear in
+        //
+        function getYPosition() {
+            return (Math.round(canvasHeight + Math.random() * 200));
+        }
+    </script>
+    <p>
+        This is inspired by / stolen from
+        <a href="http://psql.me/post/17231067201" target="_blank">something Pasquale did</a>.
+    </p>
+
+</body>
+
+</html>
